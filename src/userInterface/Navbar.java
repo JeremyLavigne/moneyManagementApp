@@ -1,12 +1,8 @@
 package userInterface;
 
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import java.awt.Color;
-
+import javax.swing.*;
 
 /*
-
     Classic Menu bar, empty for now
 
     See some example / help here :
@@ -16,13 +12,23 @@ import java.awt.Color;
 public class Navbar extends JMenuBar {
 
     private JMenuBar menuBar;
-    private JMenu menu;
+    private JMenu menu, submenu;
+    private JMenuItem menuItem1, menuItem2, menuItem3;
 
     public Navbar() {
         menuBar = new JMenuBar();
         menu = new JMenu("App Menu");
 
-        menuBar.setBackground(Color.green);
+        menuItem1 = new JMenuItem("Menu item1");
+        menuItem2 = new JMenuItem("Menu item2");
+        menuItem3 = new JMenuItem("Menu item3");
+
+        menu.add(menuItem1);
+        menu.add(menuItem2);
+        menu.add(menuItem3);
+
         menuBar.add(menu);
+
+        this.add(menuBar);
     }
 }
