@@ -1,5 +1,6 @@
 package userInterface;
 
+import com.company.Balance;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -10,37 +11,22 @@ import java.awt.*;
  */
 public class AddExpenses extends JPanel {
 
-    private JLabel rentLabel, loansLabel, foodLabel, leisureLabel, othersLabel;
-    private JTextField rentTextField, loansTextField, foodTextField, leisureTextField, othersTextField;
+    private Balance appBalance;
 
-    public AddExpenses() {
+
+    public AddExpenses(Balance balance) {
+
+        this.appBalance = balance;
 
         this.setBackground(Color.yellow);
 
-        rentLabel = new JLabel("Rent :");
-        loansLabel = new JLabel("Loans :");
-        foodLabel = new JLabel("Food :");
-        leisureLabel = new JLabel("Leisure :");
-        othersLabel = new JLabel("Others :");
-
-        rentTextField = new JTextField(10);
-        loansTextField = new JTextField(10);
-        foodTextField = new JTextField(10);
-        leisureTextField = new JTextField(10);
-        othersTextField = new JTextField(10);
-
         this.setLayout(new MigLayout());
 
-        this.add(rentLabel);
-        this.add(rentTextField, "wrap");
-        this.add(loansLabel);
-        this.add(loansTextField, "wrap");
-        this.add(foodLabel);
-        this.add(foodTextField, "wrap");
-        this.add(leisureLabel);
-        this.add(leisureTextField, "wrap");
-        this.add(othersLabel);
-        this.add(othersTextField, "wrap");
+        this.add(new AddMovementLine("Rent", appBalance, false), "wrap");
+        this.add(new AddMovementLine("Loans", appBalance, false), "wrap");
+        this.add(new AddMovementLine("Food", appBalance, false), "wrap");
+        this.add(new AddMovementLine("Leisure", appBalance, false), "wrap");
+        this.add(new AddMovementLine("Others", appBalance, false), "wrap");
     }
 }
 

@@ -2,29 +2,36 @@ package com.company;
 
 import java.util.ArrayList;
 
+/*
+    Balance contains all money movements (should change name now) and the the theoritical amount for next year
+ */
 public class Balance {
 
-    private int total;
+    private int totalNextYear;
     private ArrayList<MoneyMovement> movements;
 
     public Balance() {
-        this.total = 0;
+        this.totalNextYear = 0;
         this.movements = new ArrayList<>();
     }
 
-    public ArrayList<MoneyMovement> getMovements() {
-        return movements;
+    public int getTotalNextYear() { return totalNextYear; }
+
+
+    // Add money movement
+    public void addMovement(String label, int amount) {
+        movements.add(new MoneyMovement(label, amount));
+        totalNextYear += amount * 12;
     }
 
-    public int getTotal() {
-        return total;
-    }
+
 
     @Override
     public String toString() {
         return "Balance{" +
-                "total=" + total +
+                "total=" + totalNextYear +
                 ", movements=" + movements +
                 '}';
     }
+
 }

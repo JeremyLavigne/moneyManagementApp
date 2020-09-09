@@ -1,5 +1,9 @@
 package com.company;
 
+
+/*
+    Represent one expense or income
+ */
 public class MoneyMovement {
     private int amount;
     private String label;

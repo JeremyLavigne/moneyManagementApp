@@ -1,5 +1,6 @@
 package userInterface;
 
+import com.company.Balance;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -9,24 +10,26 @@ import javax.swing.*;
  */
 public class AppWindow extends JFrame {
 
+    private Balance appBalance;
+
     /*
         constructor : title, size and layout
      */
-    public AppWindow() {
+    public AppWindow(Balance balance) {
+
+        appBalance = balance;
+
         this.setTitle("Will I be rich next year?");
         this.setSize(1000, 800);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        MigLayout layout = new MigLayout();
-        JPanel mainPane = new JPanel(layout);
-        mainPane.add(new ExpensesSummary(), "cell 0 0 4 1, width 300:400:500, height 200:300:400");
-        mainPane.add(new BalanceSummary(), "cell 4 0 2 1, width 200:200:200, height 200:300:400");
-        mainPane.add(new IncomeSummary(), "cell 6 0 4 1, width 300:400:500, height 200:300:400");
-        mainPane.add(new AddExpenses(), "cell 0 1 5 2, width 400:500:600, height 400:500:600");
-        mainPane.add(new AddIncome(), "cell 5 1 5 2, width 400:500:600, height 400:500:600");
+        this.setLayout(new MigLayout());
 
-        this.add(mainPane);
+        this.add(new WelcomeComponent(), "cell 0 0 2 1, width 200:300:400, height 200:300:400");
+        this.add(new BalanceSummary(appBalance), "cell 2 0 4 1, width 600:700:800, height 200:300:400");
+        this.add(new AddExpenses(appBalance), "cell 0 1 3 2, width 400:500:600, height 400:500:600");
+        this.add(new AddIncome(appBalance), "cell 3 1 3 2, width 400:500:600, height 400:500:600");
 
     }
 
