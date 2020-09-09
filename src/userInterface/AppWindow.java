@@ -24,12 +24,13 @@ public class AppWindow extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+
+        // --------------------------------------- Layout --------------------------------
         this.setLayout(new MigLayout());
 
-        this.add(new WelcomeComponent(), "cell 0 0 2 1, width 200:300:400, height 200:300:400");
-        this.add(new BalanceSummary(appBalance), "cell 2 0 4 1, width 600:700:800, height 200:300:400");
-        this.add(new AddExpenses(appBalance), "cell 0 1 3 2, width 400:500:600, height 400:500:600");
-        this.add(new AddIncome(appBalance), "cell 3 1 3 2, width 400:500:600, height 400:500:600");
+        this.add(new BalanceSummary(appBalance), "cell 0 0 2 1, width 600:1000:, height 200:300:");
+        this.add(new AddExpenses(appBalance), "cell 0 1 1 2, width 400:500:, height 400:500:");
+        this.add(new AddIncome(appBalance), "cell 1 1 1 2, width 400:500:, height 400:500:");
 
     }
 

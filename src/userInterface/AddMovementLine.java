@@ -9,34 +9,35 @@ import java.awt.event.ActionListener;
 
 
 /*
-    Represent A line in Add Income / Expense
+    Represent A line in Add Income / Add Expense
  */
 public class AddMovementLine extends JPanel {
 
-    private JLabel titleLabel, confirmationLabel;
-    private JTextField textField;
-    private JButton saveButton, modifyButton;
-    private Balance appBalance;
-    private boolean isPositive; // True if Income, false if Expenses
-
     public AddMovementLine(String title, Balance appBalance, boolean isPositive) {
 
-        this.isPositive = isPositive;
-        this.appBalance = appBalance; // Should not come like that - Stop thinking like React
+        JLabel titleLabel = new JLabel(title + " :");
+        JLabel confirmationLabel = new JLabel();
 
-        this.titleLabel = new JLabel(title + " :");
-        this.confirmationLabel = new JLabel();
+        JTextField textField = new JTextField(10);
 
-        this.textField = new JTextField(10);
-
-        this.modifyButton =  new JButton("Modify"); // Should appear when save is clicked
-        this.saveButton = new JButton("Save");
-
+        JButton modifyButton =  new JButton("Modify"); // Should appear when save is clicked
+        JButton saveButton = new JButton("Save");
         modifyButton.setEnabled(false);
+
         saveButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 confirmationLabel.setText(textField.getText());
-                appBalance.addMovement(title, Integer.valueOf(textField.getText()));
+
+                // Get amount and check if expense or income
+                int amount = Integer.valueOf(textField.getText());
+                if (!isPositive) {
+                    amount *= -1;
+                }
+
+                // Add it to the main balance
+                appBalance.addMovement(title, amount);
+
+                // Update display
                 textField.setText("");
                 textField.setEditable(false);
                 saveButton.setEnabled(false);
@@ -44,6 +45,23 @@ public class AddMovementLine extends JPanel {
             }
         });
 
+        modifyButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                confirmationLabel.setText("");
+
+                // Remove it to the main balance
+                appBalance.removeMovement(title);
+
+                // Update display
+                textField.setText("");
+                textField.setEditable(true);
+                saveButton.setEnabled(true);
+                modifyButton.setEnabled(false);
+            }
+        });
+
+
+        // --------------------------------------- Layout --------------------------------
         this.setLayout(new MigLayout());
 
         this.add(titleLabel);

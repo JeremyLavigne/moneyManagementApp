@@ -11,17 +11,16 @@ import java.awt.*;
  */
 public class AddExpenses extends JPanel {
 
-    private Balance appBalance;
-
-
-    public AddExpenses(Balance balance) {
-
-        this.appBalance = balance;
+    public AddExpenses(Balance appBalance) {
 
         this.setBackground(Color.yellow);
 
+        JLabel title = new JLabel("Monthly Expenses");
+
+        // --------------------------------------- Layout --------------------------------
         this.setLayout(new MigLayout());
 
+        this.add(title, "wrap");
         this.add(new AddMovementLine("Rent", appBalance, false), "wrap");
         this.add(new AddMovementLine("Loans", appBalance, false), "wrap");
         this.add(new AddMovementLine("Food", appBalance, false), "wrap");

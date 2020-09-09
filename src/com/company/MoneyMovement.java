@@ -1,9 +1,10 @@
 package com.company;
 
-
 /*
-    Represent one expense or income
+    Represent one expense or one income entry
+    Only Amount and label currently
  */
+
 public class MoneyMovement {
     private int amount;
     private String label;
@@ -14,20 +15,12 @@ public class MoneyMovement {
         this.label = label;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
     public String getLabel() {
         return label;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
+    public int getAmount() {
+        return amount;
     }
 
     @Override

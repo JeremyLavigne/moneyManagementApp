@@ -5,31 +5,40 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /*
     Balance Summary Component
  */
 public class BalanceSummary extends JPanel {
 
-    private Balance appBalance;
-    private JLabel title, nextYearTitle, nextYearField;
-
     public BalanceSummary(Balance balance) {
 
-        this.appBalance = balance;
+        Balance appBalance = balance;
 
         this.setBackground(Color.white);
 
-        title = new JLabel("Balance");
+        JLabel title = new JLabel("Balance");
+        JLabel nextYearTitle = new JLabel("Next Year :");
+        JLabel nextYearField = new JLabel();
 
-        nextYearTitle = new JLabel("Next Year :");
-        nextYearField = new JLabel(String.valueOf(appBalance.getTotalNextYear()));
+        JButton calculateButton = new JButton("Will I be rich next year?");
+        calculateButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                nextYearField.setText(String.valueOf(appBalance.getTotalNextYear())
+                + ((appBalance.getTotalNextYear() > 0) ? " - Yes ! :)" : " - Apparently no... :("));
+            }
+        });
 
+
+        // --------------------------------------- Layout --------------------------------
         this.setLayout(new MigLayout());
 
         this.add(title, "wrap");
-
         this.add(nextYearTitle);
+        this.add(calculateButton, "wrap");
         this.add(nextYearField, "wrap");
     }
+
 }

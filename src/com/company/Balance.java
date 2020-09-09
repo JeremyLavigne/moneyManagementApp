@@ -15,7 +15,9 @@ public class Balance {
         this.movements = new ArrayList<>();
     }
 
-    public int getTotalNextYear() { return totalNextYear; }
+    public int getTotalNextYear() {
+        return totalNextYear;
+    }
 
 
     // Add money movement
@@ -24,6 +26,20 @@ public class Balance {
         totalNextYear += amount * 12;
     }
 
+    public void removeMovement(String label) {
+        int indexOfLabel = 0;
+
+        for (int i = 0; i < movements.size(); i++) {
+            if (movements.get(i).getLabel().equals(label)){
+                indexOfLabel = i;
+            }
+        }
+
+        totalNextYear -= movements.get(indexOfLabel).getAmount() * 12;
+
+        movements.remove(indexOfLabel);
+
+    }
 
 
     @Override
