@@ -1,5 +1,7 @@
 package userInterface;
 
+import net.miginfocom.swing.MigLayout;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,16 +10,24 @@ import java.awt.*;
  */
 public class BalanceSummary extends JPanel {
 
-    private JLabel textInfo;
+    private JLabel title, todayTitle, todayBalanceField, nextYearTitle, nextYearField;
 
     public BalanceSummary() {
-        textInfo = new JLabel();
-        textInfo.setText("You are in the balance Summary");
 
-        this.setPreferredSize(new Dimension(200, 300));
-        this.setBackground(Color.black);
+        this.setBackground(Color.white);
 
+        title = new JLabel("Balance");
+        todayTitle = new JLabel("Today :");
+        todayBalanceField = new JLabel("0");
+        nextYearTitle = new JLabel("Next Year :");
+        nextYearField = new JLabel("0");
 
-        this.add(textInfo);
+        this.setLayout(new MigLayout());
+
+        this.add(title, "wrap");
+        this.add(todayTitle);
+        this.add(todayBalanceField, "wrap");
+        this.add(nextYearTitle);
+        this.add(nextYearField, "wrap");
     }
 }

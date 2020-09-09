@@ -1,14 +1,16 @@
 package userInterface;
 
+import net.miginfocom.swing.MigLayout;
+
 import javax.swing.*;
 
 /*
-    Frame for application, default size : 1000*800, not responsize (yet)
+    Frame for application, default size : 1000*800, not responsive (yet?)
  */
 public class AppWindow extends JFrame {
 
     /*
-        constructor : title, size and get Layout/content from others classes (insertContainers methods)
+        constructor : title, size and layout
      */
     public AppWindow() {
         this.setTitle("Will I be rich next year?");
@@ -16,16 +18,16 @@ public class AppWindow extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Main Jpanel, ..
-        JPanel mainPane = new JPanel();
-        // .. should 'receive' others one ..
-        this.insertContainers(mainPane);
+        MigLayout layout = new MigLayout();
+        JPanel mainPane = new JPanel(layout);
+        mainPane.add(new ExpensesSummary(), "cell 0 0 4 1, width 300:400:500, height 200:300:400");
+        mainPane.add(new BalanceSummary(), "cell 4 0 2 1, width 200:200:200, height 200:300:400");
+        mainPane.add(new IncomeSummary(), "cell 6 0 4 1, width 300:400:500, height 200:300:400");
+        mainPane.add(new AddExpenses(), "cell 0 1 5 2, width 400:500:600, height 400:500:600");
+        mainPane.add(new AddIncome(), "cell 5 1 5 2, width 400:500:600, height 400:500:600");
 
-        // and be added to the frame
         this.add(mainPane);
 
-        // Menu is treated separetely
-        this.setJMenuBar(new Navbar());
     }
 
     /*
@@ -35,28 +37,4 @@ public class AppWindow extends JFrame {
         this.setVisible(true);
     }
 
-
-    /*
-        Use BoxLayout to organise the 5 parts of the layout
-     */
-    private void insertContainers(JPanel mainPane) {
-
-        // Set Boxes
-        Box topBox = Box.createHorizontalBox();
-        topBox.add(new OutcomeSummary());
-        topBox.add(new BalanceSummary());
-        topBox.add(new IncomeSummary());
-
-        Box bottomBox = Box.createHorizontalBox();
-        bottomBox.add(new AddOutcome());
-        bottomBox.add(new AddIncome());
-
-        Box mainBox = Box.createVerticalBox();
-        mainBox.add(topBox);
-        mainBox.add(bottomBox);
-
-        // Add it to mainPane
-        mainPane.add(mainBox);
-
-    }
 }

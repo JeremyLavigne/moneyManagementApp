@@ -1,5 +1,7 @@
 package userInterface;
 
+import net.miginfocom.swing.MigLayout;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,15 +11,28 @@ import java.awt.*;
  */
 public class AddIncome extends JPanel {
 
-    private JLabel textInfo;
+    private JLabel salary1Label, salary2Label, othersLabel;
+    private JTextField salary1TextField, salary2TextField, othersTextField;
 
     public AddIncome() {
-        textInfo = new JLabel();
-        textInfo.setText("You can add some income here");
 
-        this.setPreferredSize(new Dimension(500, 500));
         this.setBackground(Color.green);
 
-        this.add(textInfo);
+        salary1Label = new JLabel("Salary 1 :");
+        salary2Label = new JLabel("Salary 2 :");
+        othersLabel = new JLabel("Others :");
+
+        salary1TextField = new JTextField(10);
+        salary2TextField = new JTextField(10);
+        othersTextField = new JTextField(10);
+
+        this.setLayout(new MigLayout());
+
+        this.add(salary1Label);
+        this.add(salary1TextField, "wrap");
+        this.add(salary2Label);
+        this.add(salary2TextField, "wrap");
+        this.add(othersLabel);
+        this.add(othersTextField, "wrap");
     }
 }

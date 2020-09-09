@@ -1,5 +1,7 @@
 package userInterface;
 
+import net.miginfocom.swing.MigLayout;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,15 +10,20 @@ import java.awt.*;
  */
 public class IncomeSummary extends JPanel {
 
-    private JLabel textInfo;
+    private JLabel title, nextTitle, next1Field;
 
     public IncomeSummary() {
-        textInfo = new JLabel();
-        textInfo.setText("You are in the balance Summary");
 
-        this.setPreferredSize(new Dimension(400, 300));
         this.setBackground(Color.blue);
 
-        this.add(textInfo);
+        title = new JLabel("Income Summary");
+        nextTitle = new JLabel("Next income :");
+        next1Field = new JLabel("->");
+
+        this.setLayout(new MigLayout());
+
+        this.add(title, "wrap");
+        this.add(nextTitle, "wrap");
+        this.add(next1Field, "wrap");
     }
 }
