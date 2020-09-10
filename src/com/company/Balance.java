@@ -7,9 +7,12 @@ import java.util.ArrayList;
  */
 public class Balance {
 
-    private int totalNextYear;
-    private ArrayList<MoneyMovement> movements;
+    private int totalNextYear; // Represent amount of money in 12 months
+    private ArrayList<MoneyMovement> movements; // List of all movements - Not so useful right now
 
+    /*
+        constructor, no parameters required
+     */
     public Balance() {
         this.totalNextYear = 0;
         this.movements = new ArrayList<>();
@@ -19,13 +22,25 @@ public class Balance {
         return totalNextYear;
     }
 
-
-    // Add money movement
+    /*
+        Add monthly money Movement - update total
+     */
     public void addMovement(String label, int amount) {
         movements.add(new MoneyMovement(label, amount));
         totalNextYear += amount * 12;
     }
 
+    /*
+        Add one time money Movement - update total
+     */
+    public void addOneTimeMovement(String label, int amount) {
+        movements.add(new MoneyMovement(label, amount));
+        totalNextYear += amount;
+    }
+
+    /*
+        Remove money Movement - update total
+     */
     public void removeMovement(String label) {
         int indexOfLabel = 0;
 

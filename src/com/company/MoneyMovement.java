@@ -2,13 +2,12 @@ package com.company;
 
 /*
     Represent one expense or one income entry
-    Only Amount and label currently
  */
 
 public class MoneyMovement {
     private int amount;
     private String label;
-    // private Date date;
+    // private Date date; //-  Date not used right now
 
     public MoneyMovement(String label, int amount) {
         this.amount = amount;
